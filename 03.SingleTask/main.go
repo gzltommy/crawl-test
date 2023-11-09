@@ -8,6 +8,6 @@ import (
 func main() {
 	engine.Run(engine.Request{
 		Url:      "https://book.douban.com/",
-		ParseFun: parse.ParseContent,
+		ParseFun: parse.ParseTag,
 	})
 }

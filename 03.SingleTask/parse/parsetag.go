@@ -7,7 +7,7 @@ import (
 
 const regexpStr = `<a href="([^"]+)" class="tag">([^<]+)</a>`
 
-func ParseContent(content []byte) engine.ParseResult {
+func ParseTag(content []byte) engine.ParseResult {
 	//<a href="/tag/小说" class="tag">小说</a>
 	re := regexp.MustCompile(regexpStr)
 	match := re.FindAllSubmatch(content, -1)
