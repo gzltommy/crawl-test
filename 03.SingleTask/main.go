@@ -8,11 +8,16 @@ import (
 func main() {
 	//engine.Run(engine.Request{
 	//	Url:      "https://book.douban.com/",
-	//	ParseFun: parse.ParseTag,
+	//	ParseFun: parse.Tag,
+	//})
+
+	//engine.Run(engine.Request{
+	//	Url:      "https://book.douban.com/tag/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C",
+	//	ParseFun: parse.BookList,
 	//})
 
 	engine.Run(engine.Request{
-		Url:      "https://book.douban.com/tag/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C",
-		ParseFun: parse.ParseBookList,
+		Url:      "https://book.douban.com/subject/30192800/",
+		ParseFun: parse.BookDetail,
 	})
 }

@@ -8,7 +8,7 @@ import (
 // <a href="/tag/小说" class="tag">小说</a>
 var tagRegexp = regexp.MustCompile(`<a href="([^"]+)" class="tag">([^<]+)</a>`)
 
-func ParseTag(content []byte) engine.ParseResult {
+func Tag(content []byte) engine.ParseResult {
 	match := tagRegexp.FindAllSubmatch(content, -1)
 	result := engine.ParseResult{}
 	for _, m := range match {
