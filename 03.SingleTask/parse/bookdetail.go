@@ -28,7 +28,7 @@ func BookDetail(content []byte, bookName string) engine.ParseResult {
 
 	result := engine.ParseResult{
 		Requests: nil,
-		Items:    []interface{}{book},
+		Items:    []interface{}{book.String()},
 	}
 	return result
 }
