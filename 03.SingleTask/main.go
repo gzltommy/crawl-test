@@ -16,8 +16,14 @@ func main() {
 	//	ParseFun: parse.BookList,
 	//})
 
+	//engine.Run(engine.Request{
+	//	Url:      "https://book.douban.com/subject/30192800/",
+	//	ParseFun: parse.BookDetail,
+	//})
+
+	// 最终：从最开始爬，并嵌套爬
 	engine.Run(engine.Request{
-		Url:      "https://book.douban.com/subject/30192800/",
-		ParseFun: parse.BookDetail,
+		Url:      "https://book.douban.com/",
+		ParseFun: parse.Tag,
 	})
 }
