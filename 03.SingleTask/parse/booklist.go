@@ -12,10 +12,13 @@ func BookList(content []byte) engine.ParseResult {
 	match := bookListRegexp.FindAllSubmatch(content, -1)
 	result := engine.ParseResult{}
 	for _, m := range match {
+		bookName := string(m[2])
 		result.Items = append(result.Items, m[2])
 		result.Requests = append(result.Requests, engine.Request{
-			Url:      "https://book.douban.com" + string(m[1]),
-			ParseFun: BookDetail,
+			Url: string(m[1]),
+			ParseFun: func(c []byte) engine.ParseResult {
+				return BookDetail(c, bookName)
+			},
 		})
 	}
 	return result

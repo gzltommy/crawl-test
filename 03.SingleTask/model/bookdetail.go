@@ -3,6 +3,7 @@ package model
 import "encoding/json"
 
 type BookDetail struct {
+	BookName  string
 	Author    string
 	Publisher string
 	BookPages string

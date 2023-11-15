@@ -15,8 +15,9 @@ var (
 	introRegexp     = regexp.MustCompile(`<div class="intro">[\s\S]*?<p>([^<]+)</p></div>`)
 )
 
-func BookDetail(content []byte) engine.ParseResult {
+func BookDetail(content []byte, bookName string) engine.ParseResult {
 	book := model.BookDetail{
+		BookName:  bookName,
 		Author:    ExtraString(content, authorRegexp),
 		Publisher: ExtraString(content, publisherRegexp),
 		BookPages: ExtraString(content, pagesRegexp),
