@@ -3,13 +3,13 @@ package model
 import "encoding/json"
 
 type BookDetail struct {
-	BookName  string
-	Author    string
-	Publisher string
-	BookPages string
-	Price     string
-	Score     string
-	Intro     string
+	BookName  string `json:"book_name"`
+	Author    string `json:"author"`
+	Publisher string `json:"publisher"`
+	BookPages string `json:"book_pages"`
+	Price     string `json:"price"`
+	Score     string `json:"score"`
+	Intro     string `json:"intro"`
 }
 
 func (b *BookDetail) String() string {
