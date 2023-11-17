@@ -1,8 +1,8 @@
 package parse
 
 import (
-	"github.com/gzltommy/crawl-test/03.SingleTask/engine"
-	"github.com/gzltommy/crawl-test/03.SingleTask/model"
+	"github.com/gzltommy/crawl-test/04.MulTask/model"
+	"github.com/gzltommy/crawl-test/04.MulTask/types"
 	"regexp"
 )
 
@@ -15,7 +15,7 @@ var (
 	introRegexp     = regexp.MustCompile(`<div class="intro">[\s\S]*?<p>([^<]+)</p></div>`)
 )
 
-func BookDetail(content []byte, bookName string) engine.ParseResult {
+func BookDetail(content []byte, bookName string) types.ParseResult {
 	book := model.BookDetail{
 		BookName:  bookName,
 		Author:    ExtraString(content, authorRegexp),
@@ -26,7 +26,7 @@ func BookDetail(content []byte, bookName string) engine.ParseResult {
 		Intro:     ExtraString(content, introRegexp),
 	}
 
-	result := engine.ParseResult{
+	result := types.ParseResult{
 		Requests: nil,
 		Items:    []interface{}{book.String()},
 	}

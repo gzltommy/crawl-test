@@ -2,10 +2,14 @@ package engine
 
 import (
 	"github.com/gzltommy/crawl-test/03.SingleTask/fetcher"
+	"github.com/gzltommy/crawl-test/04.MulTask/types"
 	"log"
 )
 
-func Run(requests ...Request) {
+type SimpleEngine struct {
+}
+
+func (e *SimpleEngine) Run(requests ...types.Request) {
 	for len(requests) > 0 {
 		r := requests[0]
 		requests = requests[1:]

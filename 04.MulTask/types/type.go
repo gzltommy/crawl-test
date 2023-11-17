@@ -1,4 +1,4 @@
-package engine
+package types
 
 type Request struct {
 	Url      string
@@ -8,8 +8,4 @@ type Request struct {
 type ParseResult struct {
 	Requests []Request
 	Items    []interface{}
-}
-
-func NilParse([]byte) ParseResult {
-	return ParseResult{}
 }
