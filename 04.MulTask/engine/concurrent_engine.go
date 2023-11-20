@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"github.com/gzltommy/crawl-test/03.SingleTask/fetcher"
+	"github.com/gzltommy/crawl-test/04.MulTask/fetcher"
 	"github.com/gzltommy/crawl-test/04.MulTask/scheduler"
 	"github.com/gzltommy/crawl-test/04.MulTask/types"
 	"log"
@@ -13,12 +13,13 @@ type ConcurrentEngine struct {
 }
 
 func (e *ConcurrentEngine) Run(requests ...types.Request) {
-	in := make(chan types.Request)
+
 	out := make(chan types.ParseResult)
 
-	e.Scheduler.ConfigureWorkChan(in)
+	e.Scheduler.Run()
+
 	for i := 0; i < e.WorkCount; i++ {
-		CreateWork(in, out)
+		CreateWork(out, e.Scheduler)
 	}
 	for _, r := range requests {
 		e.Scheduler.Submit(r)
@@ -38,9 +39,11 @@ func (e *ConcurrentEngine) Run(requests ...types.Request) {
 	}
 }
 
-func CreateWork(in chan types.Request, out chan types.ParseResult) {
+func CreateWork(out chan types.ParseResult, scheduler scheduler.Scheduler) {
+	in := make(chan types.Request)
 	go func() {
 		for {
+			scheduler.WorkReady(in)
 			request := <-in
 			result, err := worker(request)
 			if err != nil {
@@ -54,7 +57,7 @@ func CreateWork(in chan types.Request, out chan types.ParseResult) {
 func worker(r types.Request) (types.ParseResult, error) {
 	log.Printf("Fetching url:%s", r.Url)
 
-	body, err := fetcher.Fetch(r.Url)
+	body, err := fetcher.FetchWithProxy(r.Url)
 	if err != nil {
 		log.Printf("Fetch Error:%s", r.Url)
 		return types.ParseResult{}, err

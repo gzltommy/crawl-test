@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"github.com/gzltommy/crawl-test/03.SingleTask/fetcher"
+	"github.com/gzltommy/crawl-test/04.MulTask/fetcher"
 	"github.com/gzltommy/crawl-test/04.MulTask/types"
 	"log"
 )
