@@ -8,10 +8,9 @@ import (
 )
 
 func main() {
-	// 最终：从最开始爬，并嵌套爬
 	e := engine.ConcurrentEngine{
 		WorkCount: 100,
-		Scheduler: &scheduler.SimpleScheduler{},
+		Scheduler: scheduler.NewSimpleScheduler(),
 	}
 
 	e.Run(types.Request{

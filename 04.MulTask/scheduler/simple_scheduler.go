@@ -9,12 +9,19 @@ type Scheduler interface {
 	ConfigureWorkChan(chan types.Request)
 }
 
+func NewSimpleScheduler() Scheduler {
+	s := &SimpleScheduler{}
+	return s
+}
+
 type SimpleScheduler struct {
 	workerChan chan types.Request
 }
 
 func (s *SimpleScheduler) Submit(request types.Request) {
-	s.workerChan <- request
+	go func() {
+		s.workerChan <- request
+	}()
 }
 
 func (s *SimpleScheduler) ConfigureWorkChan(c chan types.Request) {

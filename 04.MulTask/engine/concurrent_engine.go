@@ -28,7 +28,7 @@ func (e *ConcurrentEngine) Run(requests ...types.Request) {
 	for {
 		result := <-out
 		for _, item := range result.Items {
-			log.Printf("Got item:%d,%v", itemCount, item)
+			log.Printf("Got item:%d,%s", itemCount, item)
 			itemCount++
 		}
 		for _, r := range result.Requests {
