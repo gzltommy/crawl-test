@@ -1,4 +1,4 @@
-package parse
+package douban
 
 import (
 	"github.com/gzltommy/crawl-test/04.MulTask/types"
