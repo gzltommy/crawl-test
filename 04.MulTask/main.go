@@ -10,6 +10,7 @@ import (
 func main() {
 	e := engine.ConcurrentEngine{
 		WorkCount: 100,
+		//Scheduler: scheduler.NewSimpleScheduler(),
 		Scheduler: scheduler.NewQueueScheduler(),
 	}
 

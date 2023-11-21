@@ -9,6 +9,10 @@ type QueueScheduler struct {
 	workerChan  chan chan types.Request
 }
 
+func (s *QueueScheduler) WorkChan() chan types.Request {
+	return make(chan types.Request)
+}
+
 func NewQueueScheduler() Scheduler {
 	return &QueueScheduler{
 		requestChan: make(chan types.Request),

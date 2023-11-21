@@ -6,4 +6,5 @@ type Scheduler interface {
 	Submit(request types.Request)
 	Run()
 	WorkReady(r chan types.Request)
+	WorkChan() chan types.Request
 }

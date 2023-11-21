@@ -19,7 +19,7 @@ func (e *ConcurrentEngine) Run(requests ...types.Request) {
 	e.Scheduler.Run()
 
 	for i := 0; i < e.WorkCount; i++ {
-		CreateWork(out, e.Scheduler)
+		CreateWork(e.Scheduler.WorkChan(), out, e.Scheduler)
 	}
 	for _, r := range requests {
 		e.Scheduler.Submit(r)
@@ -39,8 +39,7 @@ func (e *ConcurrentEngine) Run(requests ...types.Request) {
 	}
 }
 
-func CreateWork(out chan types.ParseResult, scheduler scheduler.Scheduler) {
-	in := make(chan types.Request)
+func CreateWork(in chan types.Request, out chan types.ParseResult, scheduler scheduler.Scheduler) {
 	go func() {
 		for {
 			scheduler.WorkReady(in)
